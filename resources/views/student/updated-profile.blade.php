@@ -13,9 +13,8 @@
                             <p>Cell 1(SMS)#{{ $student->user?->mobile }}, Cell 2#{{ $student->user?->alternate_mobile }}, {{ $student->user?->email }}</p>
                         </div>
                     </div>
-
                     <div class="card-body p-4 text-black">
-                        <table class="table table-striped">
+                        <table class="table table-striped overflow-hidden">
                             <tbody>
                             <tr>
                                 <th scope="row">Bank Account Title</th>
@@ -50,6 +49,29 @@
                             </tr>
                             </tbody>
                         </table>
+                        <div class="row row-cards">
+                            <div class="col-12">
+                                <form class="card" action="{{ route('student.update',$student) }}" method="post"
+                                      enctype="multipart/form-data">
+                                    @csrf
+                                    <input name="replace_award_letter" value="1" hidden>
+                                    <div class="card-body">
+                                        <div class="row row-cards">
+                                                    <label class="form-label">Replace Award Letter (PDF, Maximum: 300kb)</label>
+                                                    <input type="file" class="form-control" name="award_letter"
+                                                           accept="application/pdf">
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row justify-content-between">
+                                            <div class="col-md-3">
+                                                <button type="submit" class="btn btn-warning ms-auto">Replace</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
